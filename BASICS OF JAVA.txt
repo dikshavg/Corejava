@@ -1,0 +1,107 @@
+BASICS OF JAVA:
+===============
+1)WAP in Java to display welcome message :
+------------------------------------------
+package Basicjava;
+
+public class Welcome {
+	public static void main(String[] args) {
+		System.out.println("Welcome Batch 39!");
+	}
+
+}
+
+output:
+Welcome Batch 39!
+==========================================================================================
+2)mainmethod:
+-------------
+public class Welcome   
+{
+	public static void main(String[] args) 
+	{	
+	  System.out.println("String array Variable");	 
+	}	
+
+	public static void main(int x) 
+	{	
+	  System.out.println("int Ordinary Variable ");	  
+	}	
+}
+
+Output is : String array Variable
+================================================================================================
+3)WAP in java to add two numbers :
+--------------------------------
+public class Addition 
+{
+	public static void main(String[] args) 
+	{
+		int x = 10;
+		int y = 20;
+		int z = x + y;
+		System.out.println(z);
+	}
+}
+output:30
+============================================================================================
+4)AdditionWithMessage :
+-------------------------
+public class AdditionWithMessage 
+{
+	public static void main(String[] args) 
+	{
+		int x = 10;
+		int y = 20;
+		int z = x + y;
+		System.out.println("Sum is :"+z);
+	}
+}
+output:Sum is:30
+==========================================================================================
+5)AdditionWithout3rdVariable:
+-----------------------------
+package Basicjava;
+
+public class AdditionWithout3rdVariable {
+public static void main(String[] args) {
+	int x=100;
+	int y=200;
+	System.out.println("Sum is:"+x+y);
+	System.out.println(+x+y);
+	System.out.println(""+x+y);
+	System.out.println("Sum is :"+(x+y));
+}
+}
+output:
+Sum is:100200
+300
+100200
+Sum is :300
+================================================================================================
+6)StringConcatenation:
+---------------------------
+public class StringConcatenationDemo 
+{
+	public static void main(String[] args) 
+	{
+		String str = 25 + 25 +"NIT"+ 50 + 50;
+		System.out.println(str);
+	}
+}
+output:50NIT5050
+==============================================================================================
+7)ArrayLength:
+--------------
+package Basicjava;
+
+public class ArrayLength {
+public static void main(String[] args) {
+	int []arr= {10,20,30,40};
+	System.out.println(arr.length);
+}
+}
+
+output:4
+
+
