@@ -1,0 +1,246 @@
+Array Logical Question using Stream API :
+-----------------------------------------
+
+Q1) WAP to remove Negative Numbers from an Integer Array.
+
+    Integer[] numbers = {-10, -5, 0, 5, 10, 15, -20};
+   
+    Output : Positive Numbers: [5, 10, 15]
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class RemoveNegativeNumbers {
+	public static void main(String[] args) {
+		
+		 Integer[] numbers = {-10, -5, 0, 5, 10, 15, -20};
+	        
+	        List<Integer> positiveNumbers = Arrays.stream(numbers)  //convert array to Stream
+	                                               .filter(num -> num >= 0)  // Filter out negative numbers
+	                                               .collect(Collectors.toList());  // Collect the result into a list
+	        
+	        System.out.println("Positive Numbers: " + positiveNumbers);
+	    }
+	}
+===================================================================================
+Q2) WAP to print all the names from String array which contains 
+    letter 'a' in the name.
+
+    String[] names = {"Rahul", "Raj", "Arnav", "Scott", "Smith"};
+    Output : Names Containing 'A' or 'a' : [Rahul, Raj, Arnav]
+
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class NamesContainingA {
+	public static void main(String[] args) {
+		String[] names = {"Rahul", "Raj", "Arnav", "Scott", "Smith"};
+		List<String>NamesContainingA   = Arrays.stream(names) 
+										.filter(name -> name.toLowerCase().contains("a"))
+										.collect(Collectors.toList());
+		System.out.println("Names Containg 'A' or 'a': "+NamesContainingA);
+	}
+	
+
+}
+===================================================================================
+
+Q3) WAP to print all the Prime Numbers from an Integer Array.
+
+    Integer[] numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+    Output : Prime Numbers: [2, 3, 5, 7, 11]
+
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class PrimeNumbers {
+	public static void main(String[] args) {
+		Integer[] numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+        List<Integer> primeNumbers = Arrays.stream(numbers)  
+                							.filter(PrimeNumbers::isPrime)
+                                               .collect(Collectors.toList());
+        System.out.println("prime numbers:"+primeNumbers);
+	}
+	
+	public static boolean isPrime(int number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+===================================================================================
+
+Q4) WAP to print all the names from String array where the length of the 
+    name must be greater than 3.
+
+    String[] words = {"Raj", "Rohit", "Smirti", "Richa", "Sky"};
+    Output : [Rohit, Smirti, Richa]
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class LengthofNameMustbeGreaterthen3 {
+	public static void main(String[] args) {
+		 String[] words = {"Raj", "Rohit", "Smirti", "Richa", "Sky"};
+		 List<String> filteredNames = Arrays.stream(words)  // Convert the array to stream
+                 .filter(name -> name.length() > 3)  // Filter names with length > 3
+                 .collect(Collectors.toList());  // Collect the result into a list
+
+System.out.println(filteredNames);
+}
+}
+===================================================================================
+
+Q5) WAP to print all the unique numbers from the Array.
+
+    Integer[] numbers = {1, 2, 3, 4, 5, 2, 3, 6, 7, 8, 4};
+    Output : Unique Numbers: [1, 2, 3, 4, 5, 6, 7, 8]
+
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class UniqueNumbers {
+	public static void main(String[] args) {
+		Integer[] numbers = {1, 2, 3, 4, 5, 2, 3, 6, 7, 8, 4};
+		List<Integer> uniqueNumbers = Arrays.stream(numbers)  // Convert the array to stream
+                .distinct()  //remove duplicates
+                .collect(Collectors.toList());  // Collect the result into a list
+
+System.out.println("Unique Numbers: " + uniqueNumbers);
+}
+}
+===================================================================================
+
+Q6) WAP to filter Palindrome Words from an Array.
+
+String[] words = {"madam", "hello", "racecar", "java", "level", "world"};
+
+Output : Palindrome Words: [madam, racecar, level]
+
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class PalindromeWords {
+	public static void main(String[] args) {
+		String[] words = {"madam", "hello", "racecar", "java", "level", "world"};
+		List<String> palindromeWords = Arrays.stream(words)  
+                .filter(word -> isPalindrome(word)) 
+                .collect(Collectors.toList());
+
+System.out.println("Palindrome Words: " + palindromeWords);
+}
+	public static boolean isPalindrome(String word) {
+        String reversedWord = new StringBuilder(word).reverse().toString();  // Reverse the word
+        return word.equals(reversedWord);  // Check if original and reversed are the same
+    }
+}
+===================================================================================
+
+Q7) WAP to convert Integer Array to String Representation
+
+    Integer[] numbers = {10, 20, 30, 40, 50};
+    Converted Strings: [Number: 10, Number: 20, Number: 30, Number: 40, Number: 50]
+
+------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ConvertIntegerArraytoString {
+	public static void main(String[] args) {
+		Integer[] numbers = {10, 20, 30, 40, 50};
+		 
+				  List<String> convertedStrings = Arrays.stream(numbers)  // Convert the array to stream
+                  .map(number -> "Number: " + number)  // Transform each number to its string representation
+                  .collect(Collectors.toList());  // Collect the result into a list
+
+System.out.println("Converted Strings: " + convertedStrings);
+}
+}
+===================================================================================
+
+Q8) WAP to convert all the names of String array into uppercase 
+
+    String[] names = {"Virat", "Sanju", "Rohit", "Bumrah"};
+
+    Output : [VIRAT, SANJU, ROHIT, BUMRAH]
+
+ ------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class ConvertingNamesofStringintoUppercase {
+public static void main(String[] args) {
+	String[] names = {"Virat", "Sanju", "Rohit", "Bumrah"};
+	 List<String> uppercaseNames = Arrays.stream(names)  // Convert the array to stream
+             .map(String::toUpperCase)  // Convert each name to uppercase
+             .collect(Collectors.toList());  // Collect the result into a list
+
+System.out.println(uppercaseNames);
+}
+}
+===================================================================================
+
+Q9) WAP to convert boolean value to "Yes" or "No"
+
+    Boolean[] flags = {true, false, true, false, true};
+
+    Yes/No Values: [Yes, No, Yes, No, Yes]
+
+ ------------------------------------------------------------------------
+package ArrayLogical;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class Booleanvalue {
+	public static void main(String[] args) {
+		Boolean[] flags = {true, false, true, false, true};
+		String[] yesNoValues = Arrays.stream(flags)
+                .map(flag -> flag ? "Yes" : "No")
+                .toArray(String[]::new);
+
+
+System.out.println("Yes/No Values: " + Arrays.toString(yesNoValues));
+}
+}
+===================================================================================
+
+Q10) WAP to extract First Letter of Each Word from String Array
+
+      String []names = {"James", "Aryan", "Vibha", "Aniket"};
+
+      First Letters: [J, A, V, A]
+---------------------------------------------------------------------------
+String[] names = {"James", "Aryan", "Vibha", "Aniket"};
+
+        // Extract the first letter of each word using Stream API
+        String[] firstLetters = Arrays.stream(names)
+                                      .map(name -> String.valueOf(name.charAt(0)))  // Extract the first character
+                                      .toArray(String[]::new);
+
+        // Output the result
+        System.out.println("First Letters: " + Arrays.toString(firstLetters));
+    }
+}
