@@ -1,0 +1,184 @@
+Q1) 
+Write a program to process a list of strings. Use a custom predicate to filter strings that start with a vowel and have a length greater than 5.
+-----------------------------------------------------------------------------------package Stream2;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+public class StringFilter {
+	public static void main(String[] args) {
+		  List<String> strings = Arrays.asList("Apple", "Orange", "Banana", "Eagle", "Mango", "Umbrella","Ice");
+		  Predicate<String> startsWithVowelAndLengthGreaterThanFive = str -> 
+          (str.length() > 5) && (str.matches("^[AEIOUaeiou].*"));
+          List<String> filteredStrings = strings.stream()
+                  .filter(startsWithVowelAndLengthGreaterThanFive)
+                  .collect(Collectors.toList());
+
+filteredStrings.forEach(System.out::println);
+	}
+}
+---------------------------------------------
+output:
+Orange
+Umbrella
+
+=====================================================================================
+Q2)
+Use Stream.iterate or Stream.generate to create an infinite stream. Then filter and map the data to produce the first 10 odd squares.
+-----------------------------------------------------------------------------------
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class OddSquares {
+	public static void main(String[] args) {
+		 Stream<Integer> oddNumbers = Stream.iterate(1, n -> n + 2);
+		 
+		 oddNumbers.map(n -> n * n)  
+         .limit(10)       
+         .forEach(System.out::println);  
+}
+}
+-------------------------------------------------------------
+output:
+1
+9
+25
+49
+81
+121
+169
+225
+289
+361
+
+=====================================================================================
+Q3)
+Given a list of strings, sort them by length first and lexicographically second. Implement this using sorted.
+-----------------------------------------------------------------------------------
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class SortbyLength {
+	public static void main(String[] args) {
+		List<String> strings = Arrays.asList("banana", "apple", "kiwi", "mango", "orange", "pear");
+		
+		 List<String> sortedStrings = strings.stream()
+                 .sorted((s1, s2) -> {
+                     
+                     int lengthComparison = Integer.compare(s1.length(), s2.length());
+                     
+                   
+                     if (lengthComparison == 0) {
+                         return s1.compareTo(s2);
+                     }
+                     
+                     return lengthComparison;
+                 })
+                 .collect(Collectors.toList());
+
+
+sortedStrings.forEach(System.out::println);
+}
+}
+-----------------------------------------------------------------------------------
+output:
+kiwi
+pear
+apple
+mango
+banana
+orange
+=====================================================================================
+Q4)
+Given a list of sentences (Strings), use flatMap to create a list of all unique words in lowercase.
+-------------------------------------------------------------------------------------
+import java.util.*;
+	import java.util.stream.*;
+
+	public class UniqueWords {
+	    public static void main(String[] args) {
+	       
+	        List<String> sentences = Arrays.asList(
+	            "Hello World", 
+	            "Java is awesome", 
+	            "Hello java world"
+	        );
+
+	       
+	        Set<String> uniqueWords = sentences.stream()
+	            .flatMap(sentence -> Arrays.stream(sentence.split("\\s+")))  
+	            .map(String::toLowerCase)  
+	            .collect(Collectors.toSet());  
+
+	  
+	        uniqueWords.forEach(System.out::println);
+	    }
+	}
+
+-----------------------------------------------------------------------------------
+output:
+awesome
+world
+java
+is
+hello
+=====================================================================================
+Q5)
+Implement a method using streams to convert a list of objects (e.g., Employee) into another list containing only one property of the object (e.g., Employee.name).
+-------------------------------------------------------------------------------------
+	import java.util.*;
+	import java.util.stream.*;
+	 class Employee {
+	    private String name;
+	    private int age;
+
+	
+	    public Employee(String name, int age) {
+	        this.name = name;
+	        this.age = age;
+	    }
+
+	    
+	    public String getName() {
+	        return name;
+	    }
+
+	  
+	    public int getAge() {
+	        return age;
+	    }
+	}
+
+	public class EmployeeList {
+
+	    public static void main(String[] args) {
+	       
+	        List<Employee> employees = Arrays.asList(
+	            new Employee("Alice", 30),
+	            new Employee("Bob", 25),
+	            new Employee("Charlie", 35)
+	        );
+
+	       
+	        List<String> names = getEmployeeNames(employees);
+
+	        names.forEach(System.out::println);
+	    }
+
+	    
+	    public static List<String> getEmployeeNames(List<Employee> employees) {
+	        return employees.stream()
+	            .map(Employee::getName)  
+	            .collect(Collectors.toList());  
+	    }
+	}
+------------------------------------------------------------------------
+output:
+Alice
+Bob
+Charlie
+===================================================================================
+
+
+
