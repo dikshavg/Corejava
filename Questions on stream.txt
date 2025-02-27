@@ -1,0 +1,320 @@
+Ques - 1
+------------
+Write a Java program that creates a stream of integers using Stream.of, filters out the even numbers and then prints each squared number using forEach.
+Input (Stream):
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+Output:
+2
+4
+6
+8
+10
+--------------------------------------------------------------------------------
+ package Stream1;
+
+import java.util.stream.Stream;
+
+public class SquareEvenNumbers {
+    public static void main(String[] args) {
+        
+        Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        
+       
+        numbers
+            .filter(n -> n % 2 == 0)  
+            //.map(n -> n * n)          
+            .forEach(System.out::println);  
+    }
+}
+------------------------------------------------------------------
+output:
+2
+4
+6
+8
+10
+--------------------------------OR------------------------
+
+import java.util.stream.Stream;
+
+public class SquareEvenNumbers {
+    public static void main(String[] args) {
+        
+        Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        
+       
+        numbers
+            .filter(n -> n % 2 == 0)  
+            .map(n -> n * n)          
+            .forEach(System.out::println);  
+    }
+}
+-----------------------------------------------------------------------
+output:
+4
+16
+36
+64
+100
+=========================================================================================
+
+Ques - 2
+-----------
+Write a Java program that uses the Stream.of method to create a stream of strings, filters out the empty strings, and then concatenate the remaining strings into a single string..
+
+Input:
+A stream of strings ["Hello", "", "World", " ", "from", " ", "Java", "!"].
+
+Output:
+A single concatenated string:
+HelloWorld from Java!
+-------------------------------------------------------------------------------
+package Stream1;
+import java.util.stream.Stream;
+public class ConcatenateStringsintoSingleString {
+	public static void main(String[] args) {
+		  Stream<String> strings = Stream.of("Hello", "", "World", " ", "from", " ", "Java", "!");
+		  String result=strings
+				  .filter(s -> !s.trim().isEmpty()) 
+		            .reduce("", (s1, s2) -> s1 + s2);
+		        
+		       
+		        System.out.println(result);
+		    }
+		}
+
+==========================================================================================
+
+Ques - 3
+-----------
+You have a Student record with the following fields:
+name : (String)
+course : (String)
+
+Create a ELC class StudentFilter.
+Given a list of Student objects, where each student is enrolled in different courses, write a Java program to filter out the students who are enrolled in the "Java" course and print their names using the forEach method and the stream API.
+
+Test Case 1:
+Input:
+List<Student> students =  [("Alice", "Java"),
+   ("Bob", "Python"),
+   ("Charlie", "Java"),
+   ("David", "C++"),
+   ("Eve", "JavaScript")]
+Expected Output:
+Alice
+Charlie
+
+Test Case 2:
+Input:
+List<Student> students = [("Alice", "Python"),
+    ("Bob", "Python"),
+    ("Charlie", "Python"),
+    ("David", "C++"),
+   ("Eve", "JavaScript")]
+Expected Output:
+
+Test Case 3:
+Input:
+List<Student> students = [
+    ("Alice", "Java"),
+    ("Bob", "Java"),
+    ("Charlie", "Java"),
+    ("David", "Java"),
+    ("Eve", "Java")]
+Expected Output:
+Alice
+Bob
+Charlie
+David
+Eve
+-----------------------------------------------------------------------------------
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StudentFilter {
+
+   
+    static class Student {
+        String name;
+        String course;
+
+        public Student(String name, String course) {
+            this.name = name;
+            this.course = course;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getCourse() {
+            return course;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        List<Student> students1 = List.of(
+                new Student("Alice", "Java"),
+                new Student("Bob", "Python"),
+                new Student("Charlie", "Java"),
+                new Student("David", "C++"),
+                new Student("Eve", "JavaScript")
+        );
+
+        System.out.println("Test Case 1:");
+        students1.stream()
+                .filter(student -> "Java".equals(student.getCourse()))  // Filter students enrolled in "Java"
+                .forEach(student -> System.out.println(student.getName())); // Print the names
+
+        // Test Case 2
+        List<Student> students2 = List.of(
+                new Student("Alice", "Python"),
+                new Student("Bob", "Python"),
+                new Student("Charlie", "Python"),
+                new Student("David", "C++"),
+                new Student("Eve", "JavaScript")
+        );
+
+        System.out.println("\nTest Case 2:");
+        students2.stream()
+                .filter(student -> "Java".equals(student.getCourse()))  // No students enrolled in "Java"
+                .forEach(student -> System.out.println(student.getName())); // Nothing will be printed
+
+        // Test Case 3
+        List<Student> students3 = List.of(
+                new Student("Alice", "Java"),
+                new Student("Bob", "Java"),
+                new Student("Charlie", "Java"),
+                new Student("David", "Java"),
+                new Student("Eve", "Java")
+        );
+
+        System.out.println("\nTest Case 3:");
+        students3.stream()
+                .filter(student -> "Java".equals(student.getCourse()))  // Filter students enrolled in "Java"
+                .forEach(student -> System.out.println(student.getName())); // Print the names
+    }
+}
+
+
+
+
+========================================================================================
+
+Ques - 4
+------------
+Write a Java program that reads an array of integers, filters out the negative numbers, and then calculates the sum of the squares of the remaining positive numbers using streams and the reduce method.
+
+Input:
+Input array: [-3, 2, -5, 6, -1, 4]
+Output:
+Sum of squares of positive numbers: 56
+-----------------------------------------------------------------------------------
+import java.util.Arrays;
+public class SquareofPositiveNumbers {
+	
+public static void main(String[] args) {
+	int[] numbers= {-3, 2, -5, 6, -1, 4};
+			int  SquareofPositiveNumbers=Arrays.stream(numbers) 
+					.filter(n -> n>0)
+					.map(n -> n * n)
+					.reduce(0, (sum,square)-> sum+square);
+					System.out.println("Sum of squares of positive numbers:"+SquareofPositiveNumbers);
+	
+}
+}
+
+=======================================================================================
+
+Ques - 5
+--------------
+Write a Java program that processes a list of names to filter, sort, and print names with a length of exactly 4 characters.
+Requirements:
+Use a list of strings containing names as input.
+Filter out names that are not exactly 4 characters long.
+Sort the filtered names in lexicographical order (alphabetical order).
+Limit the output to the first 2 names after sorting.
+Print each name on a new line.
+
+Input : 
+A List of strings: ["Toby", "Anna", "Leroy", "Alex"]
+Expected Output:
+Anna
+Alex
+-----------------------------------------------------------------------------------
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class NameFilter {
+
+    public static void main(String[] args) {
+        // Input list of names
+        List<String> names = List.of("Toby", "Anna", "Leroy", "Alex");
+
+        // Process the names: filter, sort, and limit the result to the first 2 names
+        names.stream()
+            .filter(name -> name.length() == 4)              // Filter names with exactly 4 characters
+            .sorted()                                        // Sort the names in lexicographical order
+            .limit(2)                                        // Limit the result to the first 2 names
+            .forEach(System.out::println);                    // Print each name on a new line
+    }
+}
+
+
+
+
+=========================================================================================
+
+Ques - 6
+---------------
+Create a record of Employee with attributes name:(String) and id:(String)
+Given a list of Employee objects with name and salary properties, write a program to filter the list of Employees by salary in who are having salary > 30000 and print the employee names.
+-----------------------------------------------------------------------------------
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+class Employee {
+    String name;
+    String id;
+    double salary;
+
+    // Constructor to initialize the Employee object
+    public Employee(String name, String id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+
+    // Getter methods (optional, but helpful)
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+}
+
+public class EmployeeFilter {
+
+    public static void main(String[] args) {
+        // List of Employee objects
+        List<Employee> employees = Arrays.asList(
+                new Employee("Alice", "E001", 50000),
+                new Employee("Bob", "E002", 25000),
+                new Employee("Charlie", "E003", 35000),
+                new Employee("David", "E004", 40000),
+                new Employee("Eve", "E005", 28000)
+        );
+
+        // Using Stream API to filter employees with salary > 30,000 and print their names
+        employees.stream()
+                 .filter(emp -> emp.getSalary() > 30000)  // Filter employees with salary > 30000
+                 .map(Employee::getName)                   // Map to the name of the employee
+                 .forEach(System.out::println);            // Print each name
+    }
+}
+===================================================================================
