@@ -1,0 +1,89 @@
+#Java Syntax:
+------------
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello World");
+  }
+}
+----------------------------------------------------
+output:
+Hello World
+============================================================
+
+
+#Java Output/Print:
+------------------
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello World!");
+    System.out.println("I am learning Java.");
+    System.out.println("It is awesome!");
+  }
+}
+-----------------------------------------------------
+output:
+Hello World!
+I am learning Java.
+It is awesome!
+=============================================================
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(This sentence will produce an error);
+  }
+}
+------------------------------------------------------
+output:​
+Main.java:3: error: ')' expected
+    System.out.println(This sentence will produce an error);
+================================================================
+
+
+
+#Print Numbers:
+--------------
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(3);
+    System.out.println(358);
+    System.out.println(50000);
+  }
+}
+-----------------------------------------------
+output:
+3
+358
+50000
+===========================================================================
+public class Main {
+  public static void main(String[] args) {
+    System.out.println(3 + 3);
+System.out.println(2 * 5);
+  }
+}
+--------------------------------------------------------
+output:
+6
+10
+=========================================================================
+
+
+#Java Comments
+----------------
+Single-line Comments:
+---------------------
+// This is a comment
+System.out.println("Hello World");
+System.out.println("Hello World"); // This is a comment
+-----------------------------------------------------------
+Java Multi-line Comments:
+--------------------------
+/* The code below will print the words Hello World
+to the screen, and it is amazing */
+System.out.println("Hello World");
+========================================================================
+
+
+
+
+
+
